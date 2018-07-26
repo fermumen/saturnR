@@ -1,9 +1,10 @@
 Package: SaturnR
-Title: What the Package Does (one line, title case)
+Title: Bridge between R and SATURN
 Version: 0.0.0.9000
-Authors@R: person("First", "Last", email = "first.last@example.com", role = c("aut", "cre"))
-Description: What the package does (one paragraph).
+Authors@R: person("Fernando", "Munoz", email = "first.last@example.com", role = c("aut", "cre"))
+Description: Functions to allow easier communication between R and Saturn.
 Depends: R (>= 3.4.3)
-License: What license is it under?
+License: TBC
 Encoding: UTF-8
 LazyData: true
+RoxygenNote: 6.1.0

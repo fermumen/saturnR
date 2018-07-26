@@ -1,6 +1,6 @@
 #' Read UFM function
 #'
-#' This function allows you to express your love of cats.
+#' This function allows you to read UFM files into R.
 #' @param file The file to read.
 #' @param MX Path to the MX exe folder
 #' @param remove_txt when set to TRUE it will remove the interim txt files
@@ -55,7 +55,7 @@ y                                                                           9200
 # Read the csv in R
   txtfile <- paste0(dirname(file),"/",stringr::str_sub(basename(file),0,-4),"TXT")
   matriz<-  data.table::fread(txtfile)
-  names(matriz) <- c("Origin", "Destination", "User_class", "Trips")
+  names(matriz) <- c("origin", "destination", "user_class", "trips")
 
   # Remove interim file
   if (remove_txt) {

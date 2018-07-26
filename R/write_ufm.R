@@ -1,6 +1,6 @@
 #' Read UFM function
 #'
-#' This function allows you to express your love of cats.
+#' This function allows you to write data frames into UFM files.
 #' @param x A data,table object with three columns O,D,Trips.
 #' @param file The file to write, extension mandatory.
 #' @param MX Path to the MX exe folder
