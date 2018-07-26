@@ -1,6 +1,6 @@
 Package: SaturnR
 Title: Bridge between R and SATURN
-Version: 0.0.0.9000
+Version: 0.0.0.9001
 Authors@R: person("Fernando", "Munoz", email = "first.last@example.com", role = c("aut", "cre"))
 Description: Functions to allow easier communication between R and Saturn.
 Depends: R (>= 3.4.3)
@@ -8,7 +8,3 @@ License: TBC
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.1.0
-Imports:
-	data.table
-	readr
-	stringr
