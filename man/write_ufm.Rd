@@ -19,7 +19,7 @@ write_ufm(x, file, MX = "C:\\\\SATWIN\\\\XEXES_11.3.12W_MC\\\\$MX.exe",
 \item{clean_up}{when TRUE removes the VDU, KEY and LPX files}
 }
 \description{
-This function allows you to express your love of cats.
+This function allows you to write data frames into UFM files.
 }
 \examples{
 read_ufm("file.UFM")
