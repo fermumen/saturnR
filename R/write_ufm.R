@@ -15,6 +15,11 @@ write_ufm <- function(x, file ,MX = "C:\\SATWIN\\XEXES_11.3.12W_MC\\$MX.exe", re
   require(stringr)
   require(readr)
   
+  if (str_sub(file,-5,-1) != ".UFM" | str_sub(file,-5,-1) != ".ufm") {
+    warning("File should have an appropiate extension like .UFM or .ufm")
+  }
+  
+  
   txtName <- paste0(dirname(file),"/",
                  str_sub(basename(file),0,-5),
                  ".txt") # Name of the interim file
