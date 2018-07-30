@@ -14,12 +14,12 @@ skim_dist <- function(file ,SKIMDIST = "C:\\SATWIN\\XEXES_11.3.12W_MC\\SKIMDIST.
 
   command <- paste(SKIMDIST,
                    paste0("'",file,"'"), # Added commas
-                   "out")
+                   "out") #output file
 
   system(command)
 
   x <- read_ufm("out.UFM")
-  names(x) <- c("origin","destination","distance")
+  names(x) <- c("origin","destination","uc","distance")
 
   # Remove interim file
   if (remove_ufm) {
