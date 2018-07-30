@@ -2,10 +2,10 @@
 #'
 #' This function allows you to skim distances (km) from UFS files into R. NOT TESTED
 #' @param file The file to read.
-#' @param MX Path to the MX exe folder
-#' @param remove_txt when set to TRUE it will remove the interim txt files
-#' @param clean_up when TRUE removes the VDU, KEY and LPX files
-#' @keywords read, ufm
+#' @param SKIMDIST Path to the SKIMDIST.bat folder
+#' @param remove_ufm when set to TRUE it will remove the interim ufm files
+#' @param clean_up when TRUE removes the VDU, KEY and LPL files
+#' @keywords read, ufs, distance
 #' @export
 #' @examples
 #' skim_dist("file.UFS")
