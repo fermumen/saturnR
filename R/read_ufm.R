@@ -65,7 +65,7 @@ y                                                                           9200
   #Clean up garbage files
   if (clean_up) {
     file.remove(list.files(pattern = "*.VDU"))
-    file.remove(list.files(pattern = "*.LPX", path = dirname(file)))
+    file.remove(paste0(dirname(file),"/",stringr::str_sub(basename(file),0,-4),"LPX"))
     file.remove(list.files(pattern = "*.key"))
   }
   return(matriz)
