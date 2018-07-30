@@ -47,7 +47,7 @@ y                                                                           9200
 # Execute the command
 
   command <- paste(MX,
-                   paste0("'",file,"'"), # Added commas
+                   paste0("'",file,"'"), # Added commas for paths with spaces
                    "KEY temp.key VDU vdu")
 
   system(command)
