@@ -4,21 +4,20 @@
 \alias{skim_dist}
 \title{Skim Distance UFM function}
 \usage{
-skim_dist(file,
-  SKIMDIST = "C:\\\\SATWIN\\\\XEXES_11.3.12W_MC\\\\SKIMDIST.BAT",
+skim_dist(file, SATLOOK = "C:\\\\SATWIN\\\\XEXES_11.3.12W_MC\\\\$SATLOOK.exe",
   remove_ufm = TRUE, clean_up = TRUE)
 }
 \arguments{
 \item{file}{The file to read.}
 
-\item{SKIMDIST}{Path to the SKIMDIST.bat folder}
-
 \item{remove_ufm}{when set to TRUE it will remove the interim ufm files}
 
 \item{clean_up}{when TRUE removes the VDU, KEY and LPL files}
+
+\item{SKIMDIST}{Path to the SKIMDIST.bat folder}
 }
 \description{
-This function allows you to skim distances (km) from UFS files into R. NOT TESTED
+This function allows you to skim distances (km) from UFS files into R. Note it needs UFC/O
 }
 \examples{
 skim_dist("file.UFS")

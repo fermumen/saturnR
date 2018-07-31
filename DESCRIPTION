@@ -1,4 +1,4 @@
-Package: SaturnR
+Package: saturnR
 Title: Bridge between R and SATURN
 Version: 0.0.0.9001
 Authors@R: person("Fernando", "Munoz", email = "first.last@example.com", role = c("aut", "cre"))
