@@ -1,7 +1,7 @@
 Package: saturnR
 Title: Wrapper around SATURN for R
 Version: 0.0.1.0
-Authors@R: person("Fernando", "Munoz", email = "first.last@example.com", role = c("aut", "cre"))
+Authors@R: person("Fernando", "Munoz", email = "Fernando.MunozMendez@aecom.com", role = c("aut", "cre"))
 Description: Functions to allow easier communication between R and Saturn.
 Depends: R (>= 3.4.3)
 License: TBC
