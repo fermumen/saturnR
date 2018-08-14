@@ -10,8 +10,8 @@
 #' @examples
 #' read_ufm("file.UFM")
 
-
-read_ufm <- function(file ,MX = "C:\\SATWIN\\XEXES_11.3.12W_MC\\$MX.exe", remove_txt = TRUE, clean_up = TRUE){
+read_ufm <- function(file, MX = "C:\\SATWIN\\XEXES_11.3.12W_MC\\$MX.exe", 
+					remove_txt = TRUE, clean_up = TRUE){
 # Read data frame into UFM (TUBA 2 ONLY)
 #   x - data frame with 3 columns (O,D, Trips)
 #   file -  name of the file with or without extension
@@ -30,43 +30,44 @@ read_ufm <- function(file ,MX = "C:\\SATWIN\\XEXES_11.3.12W_MC\\$MX.exe", remove
 
   #fwrite(x,file = name, col.names = F) # Write the interim file
 
+	# Specify name of the key file
+	keyfile <- "temp.key" 
 
-  keyfile <- "temp.key" #name of the key
+	# Text on the key
+	text <-"          13                                                                2000
+			  16                                                                2604
+			   9                                                                2604
 
-# Text on the key
-text <-"          13                                                                2000
-          16                                                                2604
-           9                                                                2604
+			   0                                                                2604
+			   0                                                                2000
+	y                                                                           9200"
 
-           0                                                                2604
-           0                                                                2000
-y                                                                           9200"
+	# Write the keyfile
+	readr::write_lines(text, keyfile)
+  
+	# Execute the command
+	command <- paste(MX,
+					# Added commas for paths with spaces
+					paste0("'", file, "'"), 
+					"KEY temp.key VDU vdu")
 
-# Write the keyfile
-  readr::write_lines(text,keyfile)
-# Execute the command
+	system(command)
 
-  command <- paste(MX,
-                   paste0("'",file,"'"), # Added commas for paths with spaces
-                   "KEY temp.key VDU vdu")
+	# Read the csv in R
+	txtfile <- paste0(dirname(file), "/", stringr::str_sub(basename(file),0,-4), "TXT")
+	matriz <-  data.table::fread(txtfile)
+	names(matriz) <- c("origin", "destination", "user_class", "trips")
 
-  system(command)
+	# Remove interim file
+	if (remove_txt) {
+		file.remove(txtfile)
+	}
 
-# Read the csv in R
-  txtfile <- paste0(dirname(file),"/",stringr::str_sub(basename(file),0,-4),"TXT")
-  matriz<-  data.table::fread(txtfile)
-  names(matriz) <- c("origin", "destination", "user_class", "trips")
-
-  # Remove interim file
-  if (remove_txt) {
-    file.remove(txtfile)
-  }
-
-  #Clean up garbage files
-  if (clean_up) {
-    file.remove(list.files(pattern = "*.VDU"))
-    file.remove(paste0(dirname(file),"/",stringr::str_sub(basename(file),0,-4),"LPX"))
-    file.remove(list.files(pattern = "*.key"))
-  }
-  return(matriz)
+	# Clean up garbage files
+	if (clean_up) {
+		file.remove(list.files(pattern = "*.VDU"))
+		file.remove(paste0(dirname(file), "/", stringr::str_sub(basename(file),0,-4), "LPX"))
+		file.remove(list.files(pattern = "*.key"))
+	}
+	return(matriz)
 }

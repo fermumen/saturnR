@@ -10,29 +10,31 @@
 #' @examples
 #' skim_dist("file.UFS")
 
-skim_dist <- function(file ,SATLOOK = "C:\\SATWIN\\XEXES_11.3.12W_MC\\$SATLOOK.exe", remove_ufm = TRUE, clean_up = TRUE){
+skim_dist <- function(file ,SATLOOK = "C:\\SATWIN\\XEXES_11.3.12W_MC\\$SATLOOK.exe", 
+					remove_ufm = TRUE, clean_up = TRUE){
 
-  command <- paste(SATLOOK,
-                   paste0("'",file,"'"), # Added commas
-                   "M 28",
-                   "out",
-                   "/DISTSKIM") #output file
+	command <- paste(SATLOOK,
+					# Added commas
+					paste0("'", file, "'"), 
+					"M 28",
+					"out",
+					# Output file
+					"/DISTSKIM") 
 
-  system(command)
+	system(command)
 
-  x <- read_ufm("out.UFM")
-  names(x) <- c("origin","destination","uc","distance")
+	x <- read_ufm("out.UFM")
+	names(x) <- c("origin", "destination", "uc", "distance")
 
-  # Remove interim file
-  if (remove_ufm) {
-    file.remove("out.UFM")
-  }
+	# Remove interim file
+	if (remove_ufm) {
+		file.remove("out.UFM")
+	}
 
-# Clean up garbage files
-  if (clean_up) {
-    #file.remove(list.files(pattern = "*.VDU"))
-    file.remove(paste0(dirname(file),"/",stringr::str_sub(basename(file),0,-4),"LPL"))
-  }
-  return(x)
-
+	# Clean up garbage files
+	if (clean_up) {
+		#file.remove(list.files(pattern = "*.VDU"))
+		file.remove(paste0(dirname(file), "/", stringr::str_sub(basename(file),0,-4), "LPL"))
+	}
+	return(x)
 }

@@ -4,7 +4,8 @@
 \alias{skim_dist}
 \title{Skim Distance UFM function}
 \usage{
-skim_dist(file, SATLOOK = "C:\\\\SATWIN\\\\XEXES_11.3.12W_MC\\\\$SATLOOK.exe",
+skim_dist(file,
+  SATLOOK = "C:\\\\SATWIN\\\\XEXES_11.3.12W_MC\\\\$SATLOOK.exe",
   remove_ufm = TRUE, clean_up = TRUE)
 }
 \arguments{
