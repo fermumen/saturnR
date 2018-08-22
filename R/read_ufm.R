@@ -11,7 +11,8 @@
 #' read_ufm("file.UFM")
 
 
-read_ufm <- function(file ,MX = "C:\\SATWIN\\XEXES_11.3.12W_MC\\$MX.exe", remove_txt = TRUE, clean_up = TRUE){
+read_ufm <- function(file ,MX = "C:\\SATWIN\\XEXES_11.3.12W_MC\\$MX.exe",
+                     remove_txt = TRUE, clean_up = TRUE){
 # Read data frame into UFM (TUBA 2 ONLY)
 #   x - data frame with 3 columns (O,D, Trips)
 #   file -  name of the file with or without extension
@@ -33,7 +34,7 @@ read_ufm <- function(file ,MX = "C:\\SATWIN\\XEXES_11.3.12W_MC\\$MX.exe", remove
 
   keyfile <- "temp.key" #name of the key
 
-# Text on the key
+  # Text on the key
 text <-"          13                                                                2000
           16                                                                2604
            9                                                                2604
@@ -42,9 +43,9 @@ text <-"          13                                                            
            0                                                                2000
 y                                                                           9200"
 
-# Write the keyfile
+  # Write the keyfile
   readr::write_lines(text,keyfile)
-# Execute the command
+  # Execute the command
 
   command <- paste(MX,
                    paste0("'",file,"'"), # Added commas for paths with spaces
@@ -52,7 +53,7 @@ y                                                                           9200
 
   system(command)
 
-# Read the csv in R
+  # Read the csv in R
   txtfile <- paste0(dirname(file),"/",stringr::str_sub(basename(file),0,-4),"TXT")
   matriz<-  data.table::fread(txtfile)
   names(matriz) <- c("origin", "destination", "user_class", "trips")

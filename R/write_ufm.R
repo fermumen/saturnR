@@ -11,7 +11,8 @@
 #' @examples
 #' read_ufm("file.UFM")
 
-write_ufm <- function(x, file ,MX = "C:\\SATWIN\\XEXES_11.3.12W_MC\\$MX.exe", remove_txt = TRUE, clean_up = TRUE){
+write_ufm <- function(x, file ,MX = "C:\\SATWIN\\XEXES_11.3.12W_MC\\$MX.exe",
+                      remove_txt = TRUE, clean_up = TRUE){
 # Writes data frame into UFM (TUBA 2 ONLY)
 #   x - data frame with 3 columns (O,D, Trips)
 #   file -  name of the file with extension, paths accepted
@@ -42,7 +43,7 @@ write_ufm <- function(x, file ,MX = "C:\\SATWIN\\XEXES_11.3.12W_MC\\$MX.exe", re
 
   keyfile <- "temp.key" #name of the key
 
-# Text on the key
+  # Text on the key
 text <-c(
 "           1                                                                2004",
 txtName,
@@ -58,9 +59,9 @@ file,
 y                                                                           9200
 ")
 
-# Write the keyfile
+  # Write the keyfile
   readr::write_lines(text,keyfile)
-# Execute the command
+  # Execute the command
   command <- paste(MX, "I KEY temp.key VDU vdu")
   system(command)
 
