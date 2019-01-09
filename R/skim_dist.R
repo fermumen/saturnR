@@ -2,7 +2,7 @@
 #'
 #' This function allows you to skim distances (km) from UFS files into R. Note it needs UFC/O
 #' @param file The file to read.
-#' @param SKIMDIST Path to the SKIMDIST.bat folder
+#' @param SATLOOK Path to SATLOOK.exe
 #' @param remove_ufm when set to TRUE it will remove the interim ufm files
 #' @param clean_up when TRUE removes the VDU, KEY and LPL files
 #' @keywords read, ufs, distance
@@ -10,16 +10,16 @@
 #' @examples
 #' skim_dist("file.UFS")
 
-skim_dist <- function(file ,SATLOOK = "C:\\SATWIN\\XEXES_11.3.12W_MC\\$SATLOOK.exe", 
+skim_dist <- function(file ,SATLOOK = "C:\\SATWIN\\XEXES_11.3.12W_MC\\$SATLOOK.exe",
 					remove_ufm = TRUE, clean_up = TRUE){
 
 	command <- paste(SATLOOK,
 					# Added commas
-					paste0("'", file, "'"), 
+					paste0("'", file, "'"),
 					"M 28",
 					"out",
 					# Output file
-					"/DISTSKIM") 
+					"/DISTSKIM")
 
 	system(command)
 
