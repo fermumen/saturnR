@@ -29,7 +29,7 @@ write_ufm <- function(x, file ,MX = "C:\\SATWIN\\XEXES_11.3.12W_MC\\$MX.exe",
   # require(stringr)
   # require(readr)
 
-  if (str_sub(file,-4,-1) != ".UFM" | stringr::str_sub(file,-4,-1) != ".ufm") {
+  if (stringr::str_sub(file,-4,-1) != ".UFM" | stringr::str_sub(file,-4,-1) != ".ufm") {
     warning("File should have an appropiate extension like .UFM or .ufm")
   }
 
