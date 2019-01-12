@@ -73,7 +73,7 @@ y                                                                           9200
   #Clean up garbage files
   if (clean_up) {
     file.remove(list.files(pattern = "*.VDU"))
-    file.remove(list.files(pattern = "*.LPX", path = dirname(file)))
+    file.remove(list.files(pattern = "*.LPX"))
     file.remove(list.files(pattern = "*.key"))
   }
 
