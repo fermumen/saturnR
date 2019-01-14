@@ -4,7 +4,7 @@
 \alias{prepare_coordinates}
 \title{Prepare coordinates file}
 \usage{
-prepare_coordinates(wd = ".", dat, save_file = TRUE, output_file = if
+prepare_coordinates(dat, wd = ".", save_file = TRUE, output_file = if
   (save_file) "Coordinates.csv")
 }
 \description{
