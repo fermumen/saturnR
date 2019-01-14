@@ -11,7 +11,7 @@
 #' @examples
 #' prepare_coordinates("2014_coordinates.dat")
 
-prepare_coordinates <- function(wd = ".", dat, save_file = TRUE,
+prepare_coordinates <- function(dat, wd = ".", save_file = TRUE,
 								output_file = if(save_file) "Coordinates.csv") {
 
 
@@ -34,6 +34,7 @@ prepare_coordinates <- function(wd = ".", dat, save_file = TRUE,
 		# Remove zone entries
 		coord <- coord[-which(coord$Zone == "C"), c(4,2,3)]
 		coord <- coord[!duplicated(coord$Node),]
+		names(coord) = c("node", "easting", "northing")
 
 		# Save file
 		if(save_file) write.csv(coord, output_file, row.names = FALSE)
