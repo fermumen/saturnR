@@ -1,4 +1,4 @@
-#' Read UFM function
+#' Write UFM function
 #'
 #' This function allows you to write data frames into UFM files.
 #' @param x A data,table object with three columns O,D,Trips.
@@ -9,10 +9,10 @@
 #' @keywords write, ufm
 #' @export
 #' @examples
-#' read_ufm("file.UFM")
+#' write_ufm("file.UFM")
 
 write_ufm <- function(x, file ,MX = "C:\\SATWIN\\XEXES_11.3.12W_MC\\$MX.exe",
-                      remove_txt = TRUE, clean_up = TRUE){
+                      remove_txt = TRUE, clean_up = TRUE, stack = FALSE){
 # Writes data frame into UFM (TUBA 2 ONLY)
 #   x - data frame with 3 columns (O,D, Trips)
 #   file -  name of the file with extension, paths accepted
@@ -29,8 +29,12 @@ write_ufm <- function(x, file ,MX = "C:\\SATWIN\\XEXES_11.3.12W_MC\\$MX.exe",
   # require(stringr)
   # require(readr)
 
-  if (stringr::str_sub(file,-4,-1) != ".UFM" | stringr::str_sub(file,-4,-1) != ".ufm") {
+  if (stringr::str_sub(file,-5,-1) != ".UFM" | stringr::str_sub(file,-4,-1) != ".ufm") {
     warning("File should have an appropiate extension like .UFM or .ufm")
+  }
+
+  if (ncol(x)>3) {
+    warning("More than 3 columns detected, switching stack to TRUE")
   }
 
 
@@ -43,6 +47,13 @@ write_ufm <- function(x, file ,MX = "C:\\SATWIN\\XEXES_11.3.12W_MC\\$MX.exe",
 
   keyfile <- "temp.key" #name of the key
 
+  if (stack) {
+  text <-  "           1                                                                2004\n" +
+    txtName +
+    "\n           2                                                                2030\n           8                                                                2031\n           1                                                                2030\n          13                                                                2000\n           0                                                                2604\n          14                                                                2000\n           1                                                                2600\n"+
+    file +
+    "\nTITLE UNSET                                                                 9260\n           0                                                                2640\n           0                                                                2000\ny                                                                           9200"
+  } else {
   # Text on the key
 text <-c(
 "           1                                                                2004",
@@ -58,6 +69,7 @@ file,
            0                                                                2000
 y                                                                           9200
 ")
+}
 
   # Write the keyfile
   readr::write_lines(text,keyfile)
