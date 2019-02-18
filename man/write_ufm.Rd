@@ -2,10 +2,10 @@
 % Please edit documentation in R/write_ufm.R
 \name{write_ufm}
 \alias{write_ufm}
-\title{Read UFM function}
+\title{Write UFM function}
 \usage{
 write_ufm(x, file, MX = "C:\\\\SATWIN\\\\XEXES_11.3.12W_MC\\\\$MX.exe",
-  remove_txt = TRUE, clean_up = TRUE)
+  remove_txt = TRUE, clean_up = TRUE, stack = FALSE)
 }
 \arguments{
 \item{x}{A data,table object with three columns O,D,Trips.}
@@ -22,7 +22,7 @@ write_ufm(x, file, MX = "C:\\\\SATWIN\\\\XEXES_11.3.12W_MC\\\\$MX.exe",
 This function allows you to write data frames into UFM files.
 }
 \examples{
-read_ufm("file.UFM")
+write_ufm("file.UFM")
 }
 \keyword{ufm}
 \keyword{write,}

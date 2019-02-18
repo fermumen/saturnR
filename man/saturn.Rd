@@ -4,8 +4,8 @@
 \alias{saturn}
 \title{saturn function}
 \usage{
-saturn(DAT = "", UFM = "", PASSQ = NULL,
-  PATH = "C:/SATWIN/XEXES_11.3.12W_MC", remove_bat = TRUE)
+saturn(DAT, UFM, PASSQ = NULL, PATH = "C:/SATWIN/XEXES_11.3.12W_MC",
+  remove_bat = TRUE)
 }
 \arguments{
 \item{DAT}{The network file.}
