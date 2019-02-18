@@ -9,3 +9,9 @@
 #' @export
 #' @examples
 #' UFS_to("file.UFS")
+
+# We will need:
+# a transform coordinates function
+# a satdb dump coordinates key file and reader function
+# a coordinates to geometry function
+# a reporpused clean up function
