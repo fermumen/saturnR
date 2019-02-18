@@ -29,11 +29,11 @@ write_ufm <- function(x, file ,MX = "C:\\SATWIN\\XEXES_11.3.12W_MC\\$MX.exe",
   # require(stringr)
   # require(readr)
 
-  if (stringr::str_sub(file,-5,-1) != ".UFM" | stringr::str_sub(file,-4,-1) != ".ufm") {
+  if (stringr::str_sub(file,-5,-1) != ".UFM" | stringr::str_sub(file,-5,-1) != ".ufm") {
     warning("File should have an appropiate extension like .UFM or .ufm")
   }
 
-  if (ncol(x)>3) {
+  if (ncol(x)>3 & stack == FALSE) {
     warning("More than 3 columns detected, switching stack to TRUE")
   }
 
@@ -41,18 +41,28 @@ write_ufm <- function(x, file ,MX = "C:\\SATWIN\\XEXES_11.3.12W_MC\\$MX.exe",
   txtName <- paste0(dirname(file),"/",
                  stringr::str_sub(basename(file),0,-5),
                  ".txt") # Name of the interim file
-
+  x <- as.data.frame(x)
+  x[,ncol(x)] <- format(x[,ncol(x)], digits = 20,scientific = FALSE)
   data.table::fwrite(x,file = txtName, col.names = F) # Write the interim file
 
 
   keyfile <- "temp.key" #name of the key
 
   if (stack) {
-  text <-  "           1                                                                2004\n" +
-    txtName +
-    "\n           2                                                                2030\n           8                                                                2031\n           1                                                                2030\n          13                                                                2000\n           0                                                                2604\n          14                                                                2000\n           1                                                                2600\n"+
-    file +
-    "\nTITLE UNSET                                                                 9260\n           0                                                                2640\n           0                                                                2000\ny                                                                           9200"
+  text <-  c("           1                                                                2004",
+             txtName,
+             "           2                                                                2030",
+             "           8                                                                2031",
+             "           1                                                                2030",
+             "          13                                                                2000",
+             "           0                                                                2604",
+             "          14                                                                2000",
+             "           1                                                                2600",
+             file,
+             "TITLE UNSET                                                                 9260",
+             "           0                                                                2640",
+             "           0                                                                2000",
+             "y                                                                           9200")
   } else {
   # Text on the key
 text <-c(
