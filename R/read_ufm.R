@@ -13,24 +13,6 @@
 
 read_ufm <- function(file ,MX = "C:\\SATWIN\\XEXES_11.3.12W_MC\\$MX.exe",
                      remove_txt = TRUE, clean_up = TRUE){
-# Read data frame into UFM (TUBA 2 ONLY)
-#   x - data frame with 3 columns (O,D, Trips)
-#   file -  name of the file with or without extension
-#   MX - path to MX folder default value included
-#   remove_txt - boolean, weather to remove the the interim txt file generated
-#   clean_up - if true removes the VDU, LPX and KEY files
-# Output
-#   Writes a UFM file into the parent folder
-# Bugs
-#   It does not clean up in other folders if you set up a relative path in file
-  #file <- paste0(dirname(file),"/",basename(file),".UFM")
-  # require(data.table)
-  # require(readr)
-  # require(stringr)
-  #name <- paste0(file,".txt") # Name of the interim file
-
-  #fwrite(x,file = name, col.names = F) # Write the interim file
-
 
   keyfile <- "temp.key" #name of the key
 
