@@ -2,7 +2,7 @@
 % Please edit documentation in R/ufs_to_sf.R
 \name{get_coordinates}
 \alias{get_coordinates}
-\title{Read geometry function}
+\title{get coordinates}
 \usage{
 get_coordinates(file,
   SATDB = "C:\\\\SATWIN\\\\XEXES_11.3.12W_MC\\\\$SATDB.exe",
@@ -18,10 +18,10 @@ get_coordinates(file,
 \item{clean_up}{when TRUE removes the VDU, KEY and LPX files}
 }
 \description{
-This function allows you to read UFS/N file's into an R SF.
+This function allows you to read UFS/N file's into a df.
 }
 \examples{
-UFS_to_sf("file.UFS")
+get_coordinates("file.UFS")
 }
 \keyword{coordinates}
 \keyword{read,}
