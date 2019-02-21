@@ -1,6 +1,6 @@
 #' Skim Distance UFM function
 #'
-#' This function allows you to skim distances (km) from UFS files into R. Note it needs UFC/O
+#' This function allows you to skim distances between OD (km) from UFS files into R. Note it needs UFC/O
 #' @param file The file to read.
 #' @param SATLOOK Path to SATLOOK.exe
 #' @param remove_ufm when set to TRUE it will remove the interim ufm files
