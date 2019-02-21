@@ -1,6 +1,6 @@
-#' Read geometry function
+#' get coordinates
 #'
-#' This function allows you to read UFS/N file's into an R SF.
+#' This function allows you to read UFS/N file's into a df.
 #' @param file The file to read.
 #' @param SATDB Path to the SATDB exe folder
 #' @param clean_up when TRUE removes the VDU, KEY and LPX files
@@ -8,7 +8,7 @@
 #' @keywords read, ufs, coordinates
 #' @export
 #' @examples
-#' UFS_to_sf("file.UFS")
+#' get_coordinates("file.UFS")
 
 # We will need:
 # a satdb dump coordinates key file and reader function
@@ -67,7 +67,17 @@ get_coordinates <- function(file ,SATDB = "C:\\SATWIN\\XEXES_11.3.12W_MC\\$SATDB
   return(matriz)
 }
 
-# a <- get_coordinates(file)
+
+#' ufs_to_sf
+#'
+#' This function allows you to read UFS/N file's into an R SF.
+#' @param file The file to read.
+#' @param ... Arguments to be passed to get-coordinates
+#' @keywords read, ufs, coordinates, sf
+#' @export
+#' @examples
+#' ufs_to_sf("file.UFS")
+
 
 ufs_as_sf <- function(file, ...){
   x <- get_coordinates(file, ...)
