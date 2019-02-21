@@ -17,7 +17,7 @@ skim_dist(file, SATLOOK = "C:\\\\SATWIN\\\\XEXES_11.3.12W_MC\\\\$SATLOOK.exe",
 \item{clean_up}{when TRUE removes the VDU, KEY and LPL files}
 }
 \description{
-This function allows you to skim distances (km) from UFS files into R. Note it needs UFC/O
+This function allows you to skim distances between OD (km) from UFS files into R. Note it needs UFC/O
 }
 \examples{
 skim_dist("file.UFS")
