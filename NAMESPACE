@@ -3,6 +3,7 @@
 export(get_coordinates)
 export(prepare_coordinates)
 export(read_ufm)
+export(read_ufs)
 export(saturn)
 export(skim_dist)
 export(ufs_as_sf)

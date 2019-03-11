@@ -1,0 +1,111 @@
+code,description
+1,Lanes           
+2,Stacking cap    
+3,Cap.index       
+4,Ff time     
+5,Ff speed        
+6,Distance m      
+7,Power x 100     
+8,QoverS  %   
+9,Q Average      
+10,BBF %          
+11,Capacity       
+12,VoverC %    
+13,Q at end       
+14,Delay  sec     
+15,Cruise Time    
+16,Cruise Speed
+17,Tot.Time (s)   
+18,Net Speed      
+19,Bus flows(D*   
+22,Fixed flows*
+23,Demand flow    
+24,Actual flow    
+25,Queued flow    
+26,Fuel (l/hr) 
+27,Mid l. cap     
+28,CO2 (kilos)    
+29,CO (kilos)     
+30,NOx (kilos) 
+31,HydroC (Kgs)   
+32,Lead (kilos)   
+33,% green time   
+37,GEH converg 
+38,TAX            
+39,RBKS           
+40,UC Flow(Dem)   
+41,UC Flow(Act)
+42,Entry flows*   
+43,Exit flows     
+44,Buses - near   
+45,Buses - mid.
+46,Buses - off    
+47,Penalties-Ti   
+48,Tolls (p)      
+49,Tot Bus Lane
+50,Dem+Bus Lane   
+51,Act+Bus Lane   
+53,Weave Marker   
+54,Merge Marker
+55,Sig Coord F%   
+56,Banned Pens    
+57,Max trans Q    
+58,Buses - Act 
+59,Buses - Qued   
+60,Bus Enter Up   
+61,Bus Enter Dn   
+62,Bus Exit Up 
+63,Bus Exit Dwn   
+64,Dem Flow Dwn   
+65,Act Flow Dwn   
+66,UC1 Flow Dem
+67,UC1 Flow Act   
+68,UC2 Flow Dem   
+69,UC2 Flow Act   
+70,UC3 Flow Dem
+71,UC3 Flow Act   
+72,SAVEIT Flow    
+73,BBF - Previ.   
+74,BBF - Change
+75,Prev Dem Flo   
+76,Dem Flow Ch.   
+77,Delay-stopli   
+78,Delay-cap.r 
+79,Max KPH UC 1   
+80,CrTime UC 1    
+81,Add Tim UC 1   
+82,Spd Dif UC 1
+83,CrSpeed UC 1   
+84,Qbar - V>C     
+85,QbarV>C +Qmx   
+86,Bottleneck  
+89,VC1 Flow Dem   
+90,VC1 Flow Act   
+91,VC2 Flow Dem   
+92,VC2 Flow Act
+93,VC3 Flow Dem   
+94,VC3 Flow Act   
+95,RTP Delay s    
+96,V>C Delay s 
+97,CFP Delay s    
+98,Crow-fly m     
+99,CrowFly-Dist  
+100,CrowFly/Dist
+101,STACK+Chains  
+102,FLAREX  pcu   
+103,FLAREF  pcu   
+104,Chain links 
+105,Tij Demand    
+106,Tij Actual    
+109,Conv: Delays  
+110,Conv: Gap   
+111,Conv: Capac   
+112,Conv: Flows   
+113,Stack: BB     
+114,Cruise+Click
+115,Total T+Clic  
+116,Cr Spd + Cli  
+117,Total Spd+Cl  
+118,Extra Cl Tim
+119,Cr Spd Diff
+120,Tot Spd Diff      
