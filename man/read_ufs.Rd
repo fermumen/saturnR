@@ -5,14 +5,14 @@
 \title{Read UFS function}
 \usage{
 read_ufs(file, P1X = "C:\\\\SATWIN\\\\XEXES_11.3.12W_MC\\\\$P1X.exe",
-  remove_txt = TRUE, clean_up = TRUE)
+  clean_up = TRUE, load_geometry = FALSE)
 }
 \arguments{
 \item{file}{The file to read.}
 
-\item{remove_txt}{when set to TRUE it will remove the interim txt files}
-
 \item{clean_up}{when TRUE removes the VDU, KEY and LPX files}
+
+\item{load_geometry}{it uses satdb to load the geometry and converts the object into a sf}
 
 \item{MX}{Path to the MX exe folder}
 }

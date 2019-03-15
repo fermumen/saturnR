@@ -2,11 +2,12 @@
 #'
 #' This function allows you to read coordinates.dat file and
 #' extract the coordinates of all the nodes in a saturn network
-#' @wd character; the working directory where the coordinates file exist
-#' @dat character; the name of the file to read e.g. "coordinates.dat"
-#' @save_file  logical; TRUE to save the final file as .csv, else FALSE; default to TRUE
-#' @output_file the name of the output csv file
-#' @keywords
+#' Use ufs_to_sf for link coordinates and an SF object
+#' @param wd character; the working directory where the coordinates file exist
+#' @param dat character; the name of the file to read e.g. "coordinates.dat"
+#' @param save_file  logical; TRUE to save the final file as .csv, else FALSE; default to TRUE
+#' @param output_file the name of the output csv file
+#' @keywords coordinates, nodes
 #' @export
 #' @examples
 #' prepare_coordinates("2014_coordinates.dat")
