@@ -3,6 +3,7 @@
 #' This function allows you to read UFS assignment data into R.
 #' @param file The file to read.
 #' @param MX Path to the MX exe folder
+#' @param load_geometry it uses satdb to load the geometry and converts the object into a sf
 #' @param clean_up when TRUE removes the VDU, KEY and LPX files
 #' @keywords read, ufm
 #' @export
@@ -10,7 +11,7 @@
 #' read_ufs("file.UFM")
 #'
 read_ufs <- function(file ,P1X = "C:\\SATWIN\\XEXES_11.3.12W_MC\\$P1X.exe",
-                     clean_up = TRUE){
+                     clean_up = TRUE, load_geometry = FALSE){
   export <- list()
   names <- list()
   for (i in 1:13) {
@@ -40,6 +41,11 @@ read_ufs <- function(file ,P1X = "C:\\SATWIN\\XEXES_11.3.12W_MC\\$P1X.exe",
   export[2:length(export)] <- lapply(export[2:length(export)], function(x) x[,4:ncol(x)])
   export <- do.call("cbind", export)
 
+  if (load_geometry){
+  ufs_geom <- ufs_as_sf(file)
+  export <- merge(ufs_geom, export, by = c("nodeA", "nodeB"), all.y=TRUE)
+  }
+
   if (clean_up) {
     file.remove(list.files(pattern = "*.VDU"))
     file.remove(paste0(dirname(file),"/",stringr::str_sub(basename(file),0,-4),"LPP"))
@@ -49,3 +55,5 @@ read_ufs <- function(file ,P1X = "C:\\SATWIN\\XEXES_11.3.12W_MC\\$P1X.exe",
 
   return(export)
 }
+
+
