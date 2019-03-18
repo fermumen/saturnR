@@ -4,6 +4,8 @@
 #' @param file The file to read.
 #' @param MX Path to the MX exe folder
 #' @param load_geometry it uses satdb to load the geometry and converts the object into a sf
+#' @selection_mode Define how to query the ufs with the options 'all_links'(default), 'simulation_links'
+#' 'simulation_turns' or 'centroid_connectors'.
 #' @param clean_up when TRUE removes the VDU, KEY and LPX files
 #' @keywords read, ufm
 #' @export
@@ -11,9 +13,16 @@
 #' read_ufs("file.UFM")
 #'
 read_ufs <- function(file ,P1X = "C:\\SATWIN\\XEXES_11.3.12W_MC\\$P1X.exe",
-                     clean_up = TRUE, load_geometry = FALSE){
+                     clean_up = TRUE, load_geometry = FALSE,
+                     selection_mode = "all_links"){
   export <- list()
   names <- list()
+  # Dictionary for p1xdump link selection
+  selection_dic <- c(simulation_links = "$SL",
+                     all_links = "$L",
+                     simulation_turns = "$ST",
+                     centroid_connectors = "$CC")
+  selection_mode <- selection_dic[selection_mode]
   for (i in 1:13) {
     n = 9*(i-1)
     batch <- p1xcodes$code[seq(n+1,min(n+9,110))]
@@ -21,7 +30,7 @@ read_ufs <- function(file ,P1X = "C:\\SATWIN\\XEXES_11.3.12W_MC\\$P1X.exe",
                      paste0("'",file,"'"),"/DUMP",
                      "export.csv",
                      paste(batch, collapse = " "),# Added commas for paths with spaces
-                     "$L")
+                     selection_mode)
     system(command)
     names[[i]] <- p1xcodes$description[seq(n+1,min(n+9,nrow(p1xcodes)))]
     export[[i]] <- data.table::fread("export.csv")
