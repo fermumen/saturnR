@@ -5,12 +5,10 @@
 #' @param MX Path to the MX exe folder
 #' @param load_geometry it uses satdb to load the geometry and converts the object into a sf
 #' @selection_mode Define how to query the ufs with the options 'all_links'(default), 'simulation_links'
-#' 'simulation_turns' or 'centroid_connectors'.
+#'  'simulation_turns' or 'centroid_connectors'.
 #' @param clean_up when TRUE removes the VDU, KEY and LPX files
 #' @keywords read, ufm
 #' @export
-#' @examples
-#' read_ufs("file.UFM")
 #'
 read_ufs <- function(file ,
                      clean_up = TRUE, load_geometry = FALSE,

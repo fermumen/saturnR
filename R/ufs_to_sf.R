@@ -6,7 +6,6 @@
 #' @param remove_txt when TRUE removes the interim txt
 #' @keywords read, ufs, coordinates
 #' @export
-#' @examples
 
 # We will need:
 # a satdb dump coordinates key file and reader function

@@ -19,9 +19,5 @@ read_ufs(file, clean_up = TRUE, load_geometry = FALSE,
 \description{
 This function allows you to read UFS assignment data into R.
 }
-\examples{
-read_ufs("file.UFM")
-
-}
 \keyword{read,}
 \keyword{ufm}
