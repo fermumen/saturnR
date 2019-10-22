@@ -33,7 +33,7 @@ get_coordinates <- function(file ,
       "          13                                                                7025",
       "           1                                                                7530",
       "           0                                                                7530",
-      "",
+      "geometry.txt",
       "           0                                                                7025",
       "y                                                                           9200")
 
@@ -48,7 +48,7 @@ get_coordinates <- function(file ,
   system(command)
 
   # Read the csv in R
-  txtfile <- paste0(dirname(file),"/",stringr::str_sub(basename(file),0,-4),"TXT")
+  txtfile <- "geometry.TXT"
   matrix<-  data.table::fread(txtfile)
   names(matrix) <- c("nodeA","nodeB","nodeC", "X1","Y1", "X2","Y2")
   matrix$nodeC <- NULL

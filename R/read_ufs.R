@@ -39,8 +39,8 @@ read_ufs <- function(file ,
     if ((length(names[[i]])+3) != ncol(export[[i]])){
       missed <- paste(names[[i]], collapse = ", ")
       warning("Missing one of the following: \n", missed,
-              "\nUsing generic (X1..Xn) names")
-      names[[i]] <- paste0("X",seq(n+1,(n+(ncol(export[[i]])-3))))
+              "\nUsing generic (x1..xn) names")
+      names[[i]] <- paste0("x",seq(n+1,(n+(ncol(export[[i]])-3))))
     }
   }
   names <- lapply(names, function(x) c("nodeA","nodeB","nodeC",x))
