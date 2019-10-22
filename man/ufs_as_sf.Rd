@@ -14,9 +14,6 @@ ufs_as_sf(file, ...)
 \description{
 This function allows you to read UFS/N file's into an R SF.
 }
-\examples{
-ufs_to_sf("file.UFS")
-}
 \keyword{coordinates,}
 \keyword{read,}
 \keyword{sf}

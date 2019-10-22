@@ -22,7 +22,7 @@ saturn(DAT, UFM, PASSQ = NULL, PATH = "C:/SATWIN/XEXES_11.3.12W_MC",
 This runs saturn assignements using the SATURN.bat file stored in the XEXES folder.
 }
 \examples{
-saturn('./Data/AM-reassignment/2014_Base_AM.dat','./Data/AM-reassignment/2014_BaseCosts_AM.ufm','./Data/AM-reassignment/2014_Base_AM_PassQ.dat')
+# saturn('./Data/AM-reassignment/2014_Base_AM.dat','./Data/AM-reassignment/2014_BaseCosts_AM.ufm','./Data/AM-reassignment/2014_Base_AM_PassQ.dat')
 }
 \keyword{assign}
 \keyword{saturn,}

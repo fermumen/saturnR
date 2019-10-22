@@ -11,9 +11,10 @@
 #' read_ufm("file.UFM")
 
 
-read_ufm <- function(file ,MX = "C:\\SATWIN\\XEXES_11.3.12W_MC\\$MX.exe",
+read_ufm <- function(file ,
                      remove_txt = TRUE, clean_up = TRUE){
 
+  MX <- file.path(get_xexes(),"$MX.exe")
   keyfile <- "temp.key" #name of the key
 
   # Text on the key
@@ -29,7 +30,7 @@ y                                                                           9200
   readr::write_lines(text,keyfile)
   # Execute the command
 
-  command <- paste(MX,
+  command <- paste(dQuote(MX),
                    paste0("'",file,"'"), # Added commas for paths with spaces
                    "KEY temp.key VDU vdu")
 

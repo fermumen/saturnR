@@ -12,9 +12,11 @@
 #' @examples
 #' read_ufs("file.UFM")
 #'
-read_ufs <- function(file ,P1X = "C:\\SATWIN\\XEXES_11.3.12W_MC\\$P1X.exe",
+read_ufs <- function(file ,
                      clean_up = TRUE, load_geometry = FALSE,
                      selection_mode = "all_links"){
+
+  P1X <- file.path(get_xexes(),"$P1X.exe")
   export <- list()
   names <- list()
   # Dictionary for p1xdump link selection
@@ -26,7 +28,7 @@ read_ufs <- function(file ,P1X = "C:\\SATWIN\\XEXES_11.3.12W_MC\\$P1X.exe",
   for (i in 1:13) {
     n = 9*(i-1)
     batch <- p1xcodes$code[seq(n+1,min(n+9,110))]
-    command <- paste(P1X,
+    command <- paste(dQuote(P1X),
                      paste0("'",file,"'"),"/DUMP",
                      "export.csv",
                      paste(batch, collapse = " "),# Added commas for paths with spaces

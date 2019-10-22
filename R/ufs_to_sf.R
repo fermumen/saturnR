@@ -2,21 +2,20 @@
 #'
 #' This function allows you to read UFS/N file's into a df.
 #' @param file The file to read.
-#' @param SATDB Path to the SATDB exe folder
 #' @param clean_up when TRUE removes the VDU, KEY and LPX files
 #' @param remove_txt when TRUE removes the interim txt
 #' @keywords read, ufs, coordinates
 #' @export
 #' @examples
-#' get_coordinates("file.UFS")
 
 # We will need:
 # a satdb dump coordinates key file and reader function
 # a coordinates to geometry function
 
-get_coordinates <- function(file ,SATDB = "C:\\SATWIN\\XEXES_11.3.12W_MC\\$SATDB.exe",
+get_coordinates <- function(file ,
                      remove_txt = TRUE, clean_up = TRUE){
 
+  SATDB <- file.path(get_xexes(),"$SATDB.exe")
   keyfile <- "temp.key" #name of the key
 
   # Text on the key with a neater format
@@ -42,7 +41,7 @@ get_coordinates <- function(file ,SATDB = "C:\\SATWIN\\XEXES_11.3.12W_MC\\$SATDB
   readr::write_lines(text,keyfile)
   # Execute the command
 
-  command <- paste(SATDB,
+  command <- paste(dQuote(SATDB),
                    paste0("'",file,"'"), # Added commas for paths with spaces
                    "KEY temp.key VDU vdu")
 
@@ -50,9 +49,9 @@ get_coordinates <- function(file ,SATDB = "C:\\SATWIN\\XEXES_11.3.12W_MC\\$SATDB
 
   # Read the csv in R
   txtfile <- paste0(dirname(file),"/",stringr::str_sub(basename(file),0,-4),"TXT")
-  matriz<-  data.table::fread(txtfile)
-  names(matriz) <- c("nodeA","nodeB","nodeC", "X1","Y1", "X2","Y2")
-  matriz$nodeC <- NULL
+  matrix<-  data.table::fread(txtfile)
+  names(matrix) <- c("nodeA","nodeB","nodeC", "X1","Y1", "X2","Y2")
+  matrix$nodeC <- NULL
   # Remove interim file
   if (remove_txt) {
     file.remove(txtfile)
@@ -64,7 +63,7 @@ get_coordinates <- function(file ,SATDB = "C:\\SATWIN\\XEXES_11.3.12W_MC\\$SATDB
     file.remove(paste0(dirname(file),"/",stringr::str_sub(basename(file),0,-4),"LPD"))
     file.remove(list.files(pattern = "*.key"))
   }
-  return(matriz)
+  return(matrix)
 }
 
 
@@ -75,8 +74,6 @@ get_coordinates <- function(file ,SATDB = "C:\\SATWIN\\XEXES_11.3.12W_MC\\$SATDB
 #' @param ... Arguments to be passed to get-coordinates
 #' @keywords read, ufs, coordinates, sf
 #' @export
-#' @examples
-#' ufs_to_sf("file.UFS")
 
 
 ufs_as_sf <- function(file, ...){

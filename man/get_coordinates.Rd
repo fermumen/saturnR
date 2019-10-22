@@ -4,14 +4,10 @@
 \alias{get_coordinates}
 \title{get coordinates}
 \usage{
-get_coordinates(file,
-  SATDB = "C:\\\\SATWIN\\\\XEXES_11.3.12W_MC\\\\$SATDB.exe",
-  remove_txt = TRUE, clean_up = TRUE)
+get_coordinates(file, remove_txt = TRUE, clean_up = TRUE)
 }
 \arguments{
 \item{file}{The file to read.}
-
-\item{SATDB}{Path to the SATDB exe folder}
 
 \item{remove_txt}{when TRUE removes the interim txt}
 
@@ -19,9 +15,6 @@ get_coordinates(file,
 }
 \description{
 This function allows you to read UFS/N file's into a df.
-}
-\examples{
-get_coordinates("file.UFS")
 }
 \keyword{coordinates}
 \keyword{read,}

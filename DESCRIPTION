@@ -1,6 +1,6 @@
 Package: saturnR
 Title: Wrapper around SATURN for R
-Version: 0.4.0
+Version: 0.5.0
 Authors@R: c(
   person("Fernando", "Munoz",,  email = "Fernando.MunozMendez@aecom.com", role = c("aut", "cre")),
   person("Arwa", "Sayegh",, role = c("aut")),
@@ -10,7 +10,7 @@ Depends: R (>= 3.4.2)
 License: TBC
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 6.0.1
+RoxygenNote: 6.1.1
 Imports:
     readr,
     data.table,

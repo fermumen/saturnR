@@ -4,13 +4,10 @@
 \alias{skim_dist}
 \title{Skim Distance UFM function}
 \usage{
-skim_dist(file, SATLOOK = "C:\\\\SATWIN\\\\XEXES_11.3.12W_MC\\\\$SATLOOK.exe",
-  remove_ufm = TRUE, clean_up = TRUE)
+skim_dist(file, remove_ufm = TRUE, clean_up = TRUE)
 }
 \arguments{
 \item{file}{The file to read.}
-
-\item{SATLOOK}{Path to SATLOOK.exe}
 
 \item{remove_ufm}{when set to TRUE it will remove the interim ufm files}
 

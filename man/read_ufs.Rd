@@ -4,8 +4,8 @@
 \alias{read_ufs}
 \title{Read UFS function}
 \usage{
-read_ufs(file, P1X = "C:\\\\SATWIN\\\\XEXES_11.3.12W_MC\\\\$P1X.exe",
-  clean_up = TRUE, load_geometry = FALSE)
+read_ufs(file, clean_up = TRUE, load_geometry = FALSE,
+  selection_mode = "all_links")
 }
 \arguments{
 \item{file}{The file to read.}

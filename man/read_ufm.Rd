@@ -4,17 +4,16 @@
 \alias{read_ufm}
 \title{Read UFM function}
 \usage{
-read_ufm(file, MX = "C:\\\\SATWIN\\\\XEXES_11.3.12W_MC\\\\$MX.exe",
-  remove_txt = TRUE, clean_up = TRUE)
+read_ufm(file, remove_txt = TRUE, clean_up = TRUE)
 }
 \arguments{
 \item{file}{The file to read.}
 
-\item{MX}{Path to the MX exe folder}
-
 \item{remove_txt}{when set to TRUE it will remove the interim txt files}
 
 \item{clean_up}{when TRUE removes the VDU, KEY and LPX files}
+
+\item{MX}{Path to the MX exe folder}
 }
 \description{
 This function allows you to read UFM files into R.

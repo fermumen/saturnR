@@ -28,7 +28,7 @@ write_ufm <- function(x, file ,MX = "C:\\SATWIN\\XEXES_11.3.12W_MC\\$MX.exe",
   # require(data.table)
   # require(stringr)
   # require(readr)
-
+  MX <- file.path(get_xexes(),"$MX.exe")
   if (stringr::str_sub(file,-5,-1) != ".UFM" | stringr::str_sub(file,-5,-1) != ".ufm") {
     warning("File should have an appropiate extension like .UFM or .ufm")
   }
@@ -49,7 +49,7 @@ write_ufm <- function(x, file ,MX = "C:\\SATWIN\\XEXES_11.3.12W_MC\\$MX.exe",
   keyfile <- "temp.key" #name of the key
 
   if (stack) {
-  text <-  c("           1                                                                2004",
+    text <-  c("           1                                                                2004",
              txtName,
              "           2                                                                2030",
              "           8                                                                2031",
@@ -65,26 +65,26 @@ write_ufm <- function(x, file ,MX = "C:\\SATWIN\\XEXES_11.3.12W_MC\\$MX.exe",
              "y                                                                           9200")
   } else {
   # Text on the key
-text <-c(
-"           1                                                                2004",
-txtName,
-"           2                                                                2030
-           7                                                                2031
-           1                                                                2030
-          14                                                                2000
-           1                                                                2600",
-file,
-"TITLE UNSET                                                                 9260
-           0                                                                2640
-           0                                                                2000
-y                                                                           9200
-")
-}
+    text <-
+           c(
+             "           1                                                                2004",
+             txtName,
+             "           2                                                                2030",
+             "           7                                                                2031",
+             "           1                                                                2030",
+             "          14                                                                2000",
+             "           1                                                                2600",
+             file,
+             "TITLE UNSET                                                                 9260",
+             "           0                                                                2640",
+             "           0                                                                2000",
+             "y                                                                           9200")
+  }
 
   # Write the keyfile
   readr::write_lines(text,keyfile)
   # Execute the command
-  command <- paste(MX, "I KEY temp.key VDU vdu")
+  command <- paste(dQuote(MX), "I KEY temp.key VDU vdu")
   system(command)
 
   # Remove interim file

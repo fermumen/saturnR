@@ -9,7 +9,7 @@
 #' @keywords saturn, assign
 #' @export
 #' @examples
-#' saturn('./Data/AM-reassignment/2014_Base_AM.dat','./Data/AM-reassignment/2014_BaseCosts_AM.ufm','./Data/AM-reassignment/2014_Base_AM_PassQ.dat')
+#' # saturn('./Data/AM-reassignment/2014_Base_AM.dat','./Data/AM-reassignment/2014_BaseCosts_AM.ufm','./Data/AM-reassignment/2014_Base_AM_PassQ.dat')
 
 saturn <- function(DAT,UFM,PASSQ=NULL, PATH = "C:/SATWIN/XEXES_11.3.12W_MC",remove_bat = TRUE){
 #   Assings a matrix.ufm to a network.dat
