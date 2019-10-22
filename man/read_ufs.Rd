@@ -14,6 +14,9 @@ read_ufs(file, clean_up = TRUE, load_geometry = FALSE,
 
 \item{load_geometry}{it uses satdb to load the geometry and converts the object into a sf}
 
+\item{selection_mode}{Define how to query the ufs with the options 'all_links'(default), 'simulation_links'
+'simulation_turns' or 'centroid_connectors'.}
+
 \item{MX}{Path to the MX exe folder}
 }
 \description{
