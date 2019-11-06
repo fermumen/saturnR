@@ -16,3 +16,5 @@ Imports:
     data.table,
     stringr,
     sf
+URL: https://github.com/R-AECOM/saturnR
+BugReports: https://github.com/R-AECOM/saturnR/issues
