@@ -13,8 +13,8 @@ files such as UFM matrices and UFS files
 Currently you can:
 
   - read and write matrices (both single and multiuser) (MX backend)
-  - read ufs files and extract the geometry (P1XDUMP backend) which
-    allows to obtain sf objects.
+  - read ufs files and extract the geometry and data (P1XDUMP + SATDB
+    backend) which allows to obtain sf objects.
 
 ## Installation
 
