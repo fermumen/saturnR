@@ -18,7 +18,7 @@
 <![endif]-->
 </head>
 <body>
-    <div class="container template-home">
+    <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
@@ -66,22 +66,31 @@
 
       
       </header><div class="row">
-  <div class="contents col-md-9">
+  <div class="col-md-9 contents">
+    
+
+    
+    
+<!-- README.md is generated from README.Rmd. Please edit that file -->
 <div id="saturnr" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
 <a href="#saturnr" class="anchor"></a>saturnR</h1></div>
 <div id="overview" class="section level2">
 <h2 class="hasAnchor">
 <a href="#overview" class="anchor"></a>Overview</h2>
-<p>A wrapper on saturn traffic modelling software to improve saturn and R workflow</p>
-<p>It includes functions to read UFS files and to read and write UFMs</p>
+<p>This package is a wrapper on saturn traffic modelling software to improve saturn and R workflow. It’s functions use SATURN built in XEXES as a backend and allow R users to interact with the most common SATURN files such as UFM matrices and UFS files</p>
+<p>Currently you can:</p>
+<ul>
+<li>read and write matrices (both single and multiuser) (MX backend)</li>
+<li>read ufs files and extract the geometry (P1XDUMP backend) which allows to obtain sf objects.</li>
+</ul>
 </div>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="co"># Or the the development version from GitHub:</span></a>
-<a class="sourceLine" id="cb1-2" title="2"><span class="co"># install.packages("devtools")</span></a>
-<a class="sourceLine" id="cb1-3" title="3">devtools<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/devtools/topics/reexports">install_github</a></span>(<span class="st">"r-aecom/saturnR"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="co"># You can install the the development version from GitHub:</span></a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="co"># install.packages("devtools")</span></a>
+<a class="sourceLine" id="cb1-3" data-line-number="3">devtools<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/devtools/topics/reexports">install_github</a></span>(<span class="st">"r-aecom/saturnR"</span>)</a></code></pre></div>
 </div>
 </div>
   </div>
@@ -110,8 +119,10 @@
 </ul>
 </div>
 
-  </div>
+      </div>
+
 </div>
+
 
       <footer><div class="copyright">
   <p>Developed by Fernando Munoz.</p>
