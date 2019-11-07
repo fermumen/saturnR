@@ -31,3 +31,56 @@ Currently you can:
 devtools::install_github("r-aecom/saturnR")
 ```
 
+
+## Overview
+
+Matrix manipulation using the built in tools in Saturn can be cumbersome whith this package you can load the data into R modify it and save it again.
+
+The Package comes with some example files for you to test you can see them with
+```{r}
+saturnR_example()
+```
+
+To modify the example Epsom98 matrix first we need to set up out XEXES folder as our back end.
+
+```{r}
+set_xexes("C:/Program Files (x86)/Atkins/SATURN/XEXES 11.4.07H MC X7/") # Using a particular version of the backend
+```
+
+The we can read the matrix. It only has one user class, 12 zones and 144 rows
+
+```{r}
+epsom_mat <- saturnR_example("Epsom98mat.UFM") 
+
+mat <- read_ufm(epsom_mat)
+
+mat
+
+```
+
+If we wanted to anlayse the trips between zone 3 and 4 we could use:
+
+```{r}
+selected_trips <- (mat$origin == 3 & mat$destination == 4) | # from 3 to 4
+  (mat$origin == 4 & mat$destination == 3) # or from 4 to 3
+
+mat[selected_trips,]
+
+```
+
+Then we can increase them by a fixed ammount.
+
+```{r}
+fixed_increase <- 200 # A new development adds 200 trips
+
+mat$trips[selected_trips] <- mat$trips[selected_trips] + 200
+
+mat[selected_trips,]
+
+```
+
+Finally we could save the matrix
+```{r eval=FALSE}
+write_ufm(mat, "Epsom_new_dev.UFM")
+```
+
