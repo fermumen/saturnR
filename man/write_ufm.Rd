@@ -7,7 +7,7 @@
 write_ufm(x, file, remove_txt = TRUE, clean_up = TRUE, stack = FALSE)
 }
 \arguments{
-\item{x}{A data,table object with three columns O,D,Trips.}
+\item{x}{A data,table object with three columns O,D,Trips or 4 columns if stack = TRUE}
 
 \item{file}{The file to write, extension mandatory}
 

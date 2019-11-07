@@ -29,11 +29,14 @@ Reading a simple file with read_ufs will dump all available variables from the U
 warnings at the moment due to miss one or more columns (developing)
 
 ```{r, warning=FALSE}
+# As always we define our XEXES backend in this case 11.4
+set_xexes("C:/Program Files (x86)/Atkins/SATURN/XEXES 11.4.07H MC X7/")
+
 epsom_ufs <- saturnR_example("Epsom98oba.UFS")
 
 ufs <- read_ufs(epsom_ufs, load_geometry = TRUE, selection_mode = "all_links")
 
-data.table::as.data.table(ufs)
+head(data.frame(ufs[,1:11])) #prin the first few lines and columns
 ```
 
 As we are obtaining the coordinates we can now export as a shp file
