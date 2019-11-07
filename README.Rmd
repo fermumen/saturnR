@@ -74,7 +74,7 @@ Then we can increase them by a fixed ammount.
 ```{r}
 fixed_increase <- 200 # A new development adds 200 trips
 
-mat$trips[selected_trips] <- mat$trips[selected_trips] + 200
+mat$trips[selected_trips] <- mat$trips[selected_trips] + fixed_increase
 
 mat[selected_trips,]
 
