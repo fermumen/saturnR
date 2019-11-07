@@ -1,18 +1,21 @@
 #' Read UFS function
 #'
 #' This function allows you to read UFS assignment data into R.
+#'
 #' @param file The file to read.
-#' @param MX Path to the MX exe folder
 #' @param load_geometry it uses satdb to load the geometry and converts the object into a sf
 #' @param selection_mode Define how to query the ufs with the options 'all_links'(default), 'simulation_links'
 #'  'simulation_turns' or 'centroid_connectors'.
+#' @param step how many records to read by iteration, max is 9, use 1 for stability.
 #' @param clean_up when TRUE removes the VDU, KEY and LPX files
+#'
 #' @keywords read, ufm
 #' @export
 #'
 read_ufs <- function(file ,
                      clean_up = TRUE, load_geometry = FALSE,
-                     selection_mode = "all_links"){
+                     selection_mode = "all_links",
+                     step = 9){
 
   P1X <- file.path(get_xexes(),"$P1X.exe")
   export <- list()
@@ -23,17 +26,21 @@ read_ufs <- function(file ,
                      simulation_turns = "$ST",
                      centroid_connectors = "$CC")
   selection_mode <- selection_dic[selection_mode]
-  for (i in 1:13) {
-    n = 9*(i-1)
-    batch <- p1xcodes$code[seq(n+1,min(n+9,110))]
+  iterations <- ceiling(nrow(p1xcodes)/step)
+  for (i in 1:iterations) {
+    n = step*(i-1)
+    batch <- p1xcodes$code[seq(n+1,min(n+step,110))] # the codes to read (max  = 9)
     command <- paste(dQuote(P1X),
                      paste0("'",file,"'"),"/DUMP",
                      "export.csv",
                      paste(batch, collapse = " "),# Added commas for paths with spaces
                      selection_mode)
-    system(command)
-    names[[i]] <- p1xcodes$description[seq(n+1,min(n+9,nrow(p1xcodes)))]
+    system(command) # Execute command
+    # save in a list and add appropiate names
+    # if any of the codes is missing we revert to xi names.
+    names[[i]] <- p1xcodes$description[seq(n+1,min(n+step,nrow(p1xcodes)))]
     export[[i]] <- data.table::fread("export.csv")
+    #cat(".")
     if ((length(names[[i]])+3) != ncol(export[[i]])){
       missed <- paste(names[[i]], collapse = ", ")
       warning("Missing one of the following: \n", missed,
@@ -41,13 +48,27 @@ read_ufs <- function(file ,
       names[[i]] <- paste0("x",seq(n+1,(n+(ncol(export[[i]])-3))))
     }
   }
+  # We add the 3 first to the names and the ones we already have
   names <- lapply(names, function(x) c("nodeA","nodeB","nodeC",x))
-  export <- mapply(function(x,y){
+
+  # We go thourgh the list of data and add the names
+  # change to map2 because errors with mapply
+  export <- purrr::map2(export, names, function(x, y) {
     names(x) <- y
     x
-    }, x = export, y = names)
-
-  export[2:length(export)] <- lapply(export[2:length(export)], function(x) x[,4:ncol(x)])
+  })
+  # TODO remove short columns (sometimes p1x dump gives only 5 or 6 elements)
+  nrows_export <- sapply(export, nrow)
+  nrows_export <- nrows_export == max(nrows_export) # index only the complete columns
+  removed_cols <- p1xcodes$description[!nrows_export] # get the names we are removing
+  if (length(removed_cols)>0){
+    missed <- paste(removed_cols, collapse = ", ")
+    warning("Removed incomplete: \n", missed)
+  }
+  export <- export[nrows_export]
+  # We remove the node a ,b, c from all but the first element of the list
+  export[2:length(export)] <- lapply(export[2:length(export)], function(x) x[,4:ncol(x), drop = FALSE])
+  # We convert the list to a dataframe as the output
   export <- do.call("cbind", export)
 
   if (load_geometry){

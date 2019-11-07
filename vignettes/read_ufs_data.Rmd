@@ -34,9 +34,9 @@ set_xexes("C:/Program Files (x86)/Atkins/SATURN/XEXES 11.4.07H MC X7/")
 
 epsom_ufs <- saturnR_example("Epsom98oba.UFS")
 
-ufs <- read_ufs(epsom_ufs, load_geometry = TRUE, selection_mode = "all_links")
+ufs <- read_ufs(epsom_ufs, load_geometry = TRUE, selection_mode = "all_links", step = 1)
 
-head(data.frame(ufs[,1:11])) #prin the first few lines and columns
+head(data.frame(ufs[,1:11])) #print the first few lines and columns
 ```
 
 As we are obtaining the coordinates we can now export as a shp file

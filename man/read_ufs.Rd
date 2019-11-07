@@ -5,7 +5,7 @@
 \title{Read UFS function}
 \usage{
 read_ufs(file, clean_up = TRUE, load_geometry = FALSE,
-  selection_mode = "all_links")
+  selection_mode = "all_links", step = 9)
 }
 \arguments{
 \item{file}{The file to read.}
@@ -17,7 +17,7 @@ read_ufs(file, clean_up = TRUE, load_geometry = FALSE,
 \item{selection_mode}{Define how to query the ufs with the options 'all_links'(default), 'simulation_links'
 'simulation_turns' or 'centroid_connectors'.}
 
-\item{MX}{Path to the MX exe folder}
+\item{step}{how many records to read by iteration, max is 9, use 1 for stability.}
 }
 \description{
 This function allows you to read UFS assignment data into R.
