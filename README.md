@@ -24,7 +24,7 @@ Currently you can:
 devtools::install_github("r-aecom/saturnR")
 ```
 
-## Overview
+## Intro to Matrix manipulation
 
 Matrix manipulation using the built in tools in Saturn can be cumbersome
 whith this package you can load the data into R modify it and save it
