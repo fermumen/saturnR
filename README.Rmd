@@ -38,6 +38,7 @@ Matrix manipulation using the built in tools in Saturn can be cumbersome whith t
 
 The Package comes with some example files for you to test you can see them with
 ```{r}
+library(saturnR)
 saturnR_example()
 ```
 

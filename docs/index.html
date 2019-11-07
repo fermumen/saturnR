@@ -88,9 +88,58 @@
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="co"># You can install the the development version from GitHub:</span></a>
-<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="co"># install.packages("devtools")</span></a>
-<a class="sourceLine" id="cb1-3" data-line-number="3">devtools<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/devtools/topics/reexports">install_github</a></span>(<span class="st">"r-aecom/saturnR"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="co"># You can install the the development version from GitHub:</span></a>
+<a class="sourceLine" id="cb1-2" title="2"><span class="co"># install.packages("devtools")</span></a>
+<a class="sourceLine" id="cb1-3" title="3">devtools<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/devtools/topics/reexports">install_github</a></span>(<span class="st">"r-aecom/saturnR"</span>)</a></code></pre></div>
+</div>
+<div id="overview-1" class="section level2">
+<h2 class="hasAnchor">
+<a href="#overview-1" class="anchor"></a>Overview</h2>
+<p>Matrix manipulation using the built in tools in Saturn can be cumbersome whith this package you can load the data into R modify it and save it again.</p>
+<p>The Package comes with some example files for you to test you can see them with</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(saturnR)</a>
+<a class="sourceLine" id="cb2-2" title="2"><span class="kw"><a href="reference/saturnR_example.html">saturnR_example</a></span>()</a>
+<a class="sourceLine" id="cb2-3" title="3"><span class="co">#&gt; [1] "2014_Coordinates.dat"     "BlckCt_2015_5UC_TS11.UFM"</span></a>
+<a class="sourceLine" id="cb2-4" title="4"><span class="co">#&gt; [3] "Epsom98mat.UFM"           "Epsom98oba.UFS"</span></a></code></pre></div>
+<p>To modify the example Epsom98 matrix first we need to set up out XEXES folder as our back end.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="kw"><a href="reference/set_xexes.html">set_xexes</a></span>(<span class="st">"C:/Program Files (x86)/Atkins/SATURN/XEXES 11.4.07H MC X7/"</span>) <span class="co"># Using a particular version of the backend</span></a></code></pre></div>
+<p>The we can read the matrix. It only has one user class, 12 zones and 144 rows</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1">epsom_mat &lt;-<span class="st"> </span><span class="kw"><a href="reference/saturnR_example.html">saturnR_example</a></span>(<span class="st">"Epsom98mat.UFM"</span>) </a>
+<a class="sourceLine" id="cb4-2" title="2"></a>
+<a class="sourceLine" id="cb4-3" title="3">mat &lt;-<span class="st"> </span><span class="kw"><a href="reference/read_ufm.html">read_ufm</a></span>(epsom_mat)</a>
+<a class="sourceLine" id="cb4-4" title="4"></a>
+<a class="sourceLine" id="cb4-5" title="5">mat</a>
+<a class="sourceLine" id="cb4-6" title="6"><span class="co">#&gt;      origin destination user_class   trips</span></a>
+<a class="sourceLine" id="cb4-7" title="7"><span class="co">#&gt;   1:      1           1          1   0.000</span></a>
+<a class="sourceLine" id="cb4-8" title="8"><span class="co">#&gt;   2:      1           2          1   8.361</span></a>
+<a class="sourceLine" id="cb4-9" title="9"><span class="co">#&gt;   3:      1           3          1  31.500</span></a>
+<a class="sourceLine" id="cb4-10" title="10"><span class="co">#&gt;   4:      1           4          1 226.728</span></a>
+<a class="sourceLine" id="cb4-11" title="11"><span class="co">#&gt;   5:      1           5          1  84.735</span></a>
+<a class="sourceLine" id="cb4-12" title="12"><span class="co">#&gt;  ---                                      </span></a>
+<a class="sourceLine" id="cb4-13" title="13"><span class="co">#&gt; 140:     12           8          1  10.952</span></a>
+<a class="sourceLine" id="cb4-14" title="14"><span class="co">#&gt; 141:     12           9          1   0.000</span></a>
+<a class="sourceLine" id="cb4-15" title="15"><span class="co">#&gt; 142:     12          10          1   0.000</span></a>
+<a class="sourceLine" id="cb4-16" title="16"><span class="co">#&gt; 143:     12          11          1   0.000</span></a>
+<a class="sourceLine" id="cb4-17" title="17"><span class="co">#&gt; 144:     12          12          1   0.000</span></a></code></pre></div>
+<p>If we wanted to anlayse the trips between zone 3 and 4 we could use:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1">selected_trips &lt;-<span class="st"> </span>(mat<span class="op">$</span>origin <span class="op">==</span><span class="st"> </span><span class="dv">3</span> <span class="op">&amp;</span><span class="st"> </span>mat<span class="op">$</span>destination <span class="op">==</span><span class="st"> </span><span class="dv">4</span>) <span class="op">|</span><span class="st"> </span><span class="co"># from 3 to 4</span></a>
+<a class="sourceLine" id="cb5-2" title="2"><span class="st">  </span>(mat<span class="op">$</span>origin <span class="op">==</span><span class="st"> </span><span class="dv">4</span> <span class="op">&amp;</span><span class="st"> </span>mat<span class="op">$</span>destination <span class="op">==</span><span class="st"> </span><span class="dv">3</span>) <span class="co"># or from 4 to 3</span></a>
+<a class="sourceLine" id="cb5-3" title="3"></a>
+<a class="sourceLine" id="cb5-4" title="4">mat[selected_trips,]</a>
+<a class="sourceLine" id="cb5-5" title="5"><span class="co">#&gt;    origin destination user_class   trips</span></a>
+<a class="sourceLine" id="cb5-6" title="6"><span class="co">#&gt; 1:      3           4          1  53.496</span></a>
+<a class="sourceLine" id="cb5-7" title="7"><span class="co">#&gt; 2:      4           3          1 152.712</span></a></code></pre></div>
+<p>Then we can increase them by a fixed ammount.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1">fixed_increase &lt;-<span class="st"> </span><span class="dv">200</span> <span class="co"># A new development adds 200 trips</span></a>
+<a class="sourceLine" id="cb6-2" title="2"></a>
+<a class="sourceLine" id="cb6-3" title="3">mat<span class="op">$</span>trips[selected_trips] &lt;-<span class="st"> </span>mat<span class="op">$</span>trips[selected_trips] <span class="op">+</span><span class="st"> </span><span class="dv">200</span></a>
+<a class="sourceLine" id="cb6-4" title="4"></a>
+<a class="sourceLine" id="cb6-5" title="5">mat[selected_trips,]</a>
+<a class="sourceLine" id="cb6-6" title="6"><span class="co">#&gt;    origin destination user_class   trips</span></a>
+<a class="sourceLine" id="cb6-7" title="7"><span class="co">#&gt; 1:      3           4          1 253.496</span></a>
+<a class="sourceLine" id="cb6-8" title="8"><span class="co">#&gt; 2:      4           3          1 352.712</span></a></code></pre></div>
+<p>Finally we could save the matrix</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1"><span class="kw"><a href="reference/write_ufm.html">write_ufm</a></span>(mat, <span class="st">"Epsom_new_dev.UFM"</span>)</a></code></pre></div>
 </div>
 </div>
   </div>
