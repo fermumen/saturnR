@@ -63,7 +63,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">saturnR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.1</span>
       </span>
     </div>
 
@@ -126,7 +126,7 @@
     </div>
 
     <pre class="usage"><span class='fu'>read_ufs</span>(<span class='no'>file</span>, <span class='kw'>clean_up</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>load_geometry</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>selection_mode</span> <span class='kw'>=</span> <span class='st'>"all_links"</span>)</pre>
+  <span class='kw'>selection_mode</span> <span class='kw'>=</span> <span class='st'>"all_links"</span>, <span class='kw'>step</span> <span class='kw'>=</span> <span class='fl'>9</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -149,8 +149,8 @@
 'simulation_turns' or 'centroid_connectors'.</p></td>
     </tr>
     <tr>
-      <th>MX</th>
-      <td><p>Path to the MX exe folder</p></td>
+      <th>step</th>
+      <td><p>how many records to read by iteration, max is 9, use 1 for stability.</p></td>
     </tr>
     </table>
     
