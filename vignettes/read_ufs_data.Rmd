@@ -1,0 +1,49 @@
+---
+title: "Reading UFS data"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Reading UFS data}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(saturnR)
+library(mapview) # for plotting purposes
+```
+
+It is common to want to extract link data from UFS files to analyse it, to produce better looking reports
+or to send it to other design teams.
+
+In those cases dumping data from UFS files can become tedius and mistake prone. The typical tools like
+batch files tend to be rigid and difficult to addapt.
+
+Reading a simple file with read_ufs will dump all available variables from the UFS. Incomplete ufs file report
+warnings at the moment due to miss one or more columns (developing)
+
+```{r, warning=FALSE}
+epsom_ufs <- saturnR_example("Epsom98oba.UFS")
+
+ufs <- read_ufs(epsom_ufs, load_geometry = TRUE, selection_mode = "all_links")
+
+data.table::as.data.table(ufs)
+```
+
+As we are obtaining the coordinates we can now export as a shp file
+```{r, eval=FALSE}
+sf::st_write(ufs, "epsom.shp")
+```
+
+Or see the result on a leaflet map
+
+```{r}
+mapview(ufs,zcol = "net_speed") #show the net speed in the map (directions overlapping in this example)
+```
+

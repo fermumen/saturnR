@@ -7,26 +7,27 @@
 #' @keywords read, ufm
 #' @export
 read_ufm <- function(file ,
-                     remove_txt = TRUE, clean_up = TRUE){
-
-  MX <- file.path(get_xexes(),"$MX.exe")
+                     remove_txt = TRUE,
+                     clean_up = TRUE) {
+  MX <- file.path(get_xexes(), "$MX.exe")
   keyfile <- "temp.key" #name of the key
 
   # Text on the key
-text <-"          13                                                                2000
-          16                                                                2604
-           9                                                                2604
-
-           0                                                                2604
-           0                                                                2000
-y                                                                           9200"
+  text <-
+    c("          13                                                                2000",
+      "          16                                                                2604",
+      "           9                                                                2604",
+      "", #Empty line to dump txt with the same name asumed TXT extension default
+      "           0                                                                2604",
+      "           0                                                                2000",
+      "y                                                                           9200")
 
   # Write the keyfile
   readr::write_lines(text,keyfile)
   # Execute the command
 
   command <- paste(dQuote(MX),
-                   paste0("'",file,"'"), # Added commas for paths with spaces
+                   dQuote(file),
                    "KEY temp.key VDU vdu")
 
   system(command)
@@ -55,7 +56,7 @@ y                                                                           9200
 #'
 #' This function allows you to write data frames into UFM files.
 #'
-#' @param x A data,table object with three columns O,D,Trips.
+#' @param x A data,table object with three columns O,D,Trips or 4 columns if stack = TRUE
 #' @param file The file to write, extension mandatory
 #' @param remove_txt when set to TRUE it will remove the interim txt files
 #' @param stack wether or not to stack the function. Changes to true for 4 column inputs
@@ -66,17 +67,6 @@ y                                                                           9200
 
 write_ufm <- function(x, file,
                       remove_txt = TRUE, clean_up = TRUE, stack = FALSE){
-  # Writes data frame into UFM (TUBA 2 ONLY)
-  #   x - data frame with 3 columns (O,D, Trips)
-  #   file -  name of the file with extension, paths accepted
-  #   MX - path to MX folder default value included
-  #   remove_txt - boolean, weather to remove the the interim txt file generated
-  #   clean_up - if true removes the VDU, LPX and KEY files
-  # Output
-  #   Writes a UFM file into the parent folder
-  # Bugs
-  #   It does not clean up in other folders if you set up a relative path in file
-
 
   MX <- file.path(get_xexes(),"$MX.exe")
   if (stringr::str_sub(file,-5,-1) != ".UFM" | stringr::str_sub(file,-5,-1) != ".ufm") {
@@ -85,6 +75,7 @@ write_ufm <- function(x, file,
 
   if (ncol(x)>3 & stack == FALSE) {
     warning("More than 3 columns detected, switching stack to TRUE")
+    stack = TRUE
   }
 
 

@@ -1,5 +1,5 @@
 Package: saturnR
-Title: Wrapper around SATURN for R
+Title: Read and write SATURN files
 Version: 0.5.0
 Authors@R: c(
   person("Fernando", "Munoz",,  email = "Fernando.MunozMendez@aecom.com", role = c("aut", "cre")),
@@ -19,4 +19,7 @@ Imports:
 URL: https://github.com/R-AECOM/saturnR
 BugReports: https://github.com/R-AECOM/saturnR/issues
 Suggests: 
-    testthat
+    testthat,
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr

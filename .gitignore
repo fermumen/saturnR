@@ -3,3 +3,4 @@
 .RData
 .git
 testdata
+inst/doc
