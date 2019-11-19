@@ -38,8 +38,15 @@ read_ufs <- function(file ,
     system(command) # Execute command
     # save in a list and add appropiate names
     # if any of the codes is missing we revert to xi names.
-    names[[i]] <- p1xcodes$description[seq(n+1,min(n+step,nrow(p1xcodes)))]
-    export[[i]] <- data.table::fread("export.csv")
+    # If export does not exist skip to next
+    if (file.exists("export.csv")) {
+      names[[i]] <-
+        p1xcodes$description[seq(n + 1, min(n + step, nrow(p1xcodes)))]
+      export[[i]] <- data.table::fread("export.csv")
+      file.remove("export.csv")
+    } else {
+      next
+    }
     #cat(".")
     if ((length(names[[i]])+3) != ncol(export[[i]])){
       missed <- paste(names[[i]], collapse = ", ")
@@ -57,7 +64,7 @@ read_ufs <- function(file ,
     names(x) <- y
     x
   })
-  # TODO remove short columns (sometimes p1x dump gives only 5 or 6 elements)
+  # Remove short columns (sometimes p1x dump gives only 5 or 6 elements)
   nrows_export <- sapply(export, nrow)
   nrows_export <- nrows_export == max(nrows_export) # index only the complete columns
   removed_cols <- p1xcodes$description[!nrows_export] # get the names we are removing
@@ -65,7 +72,7 @@ read_ufs <- function(file ,
     missed <- paste(removed_cols, collapse = ", ")
     warning("Removed incomplete: \n", missed)
   }
-  export <- export[nrows_export]
+  export <- export[nrows_export] # remove list object with incomplete nrows
   # We remove the node a ,b, c from all but the first element of the list
   export[2:length(export)] <- lapply(export[2:length(export)], function(x) x[,4:ncol(x), drop = FALSE])
   # We convert the list to a dataframe as the output
