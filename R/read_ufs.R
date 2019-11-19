@@ -27,6 +27,7 @@ read_ufs <- function(file ,
                      centroid_connectors = "$CC")
   selection_mode <- selection_dic[selection_mode]
   iterations <- ceiling(nrow(p1xcodes)/step)
+  empty <- NULL # to remove empty variables
   for (i in 1:iterations) {
     n = step*(i-1)
     batch <- p1xcodes$code[seq(n+1,min(n+step,110))] # the codes to read (max  = 9)
@@ -39,12 +40,14 @@ read_ufs <- function(file ,
     # save in a list and add appropiate names
     # if any of the codes is missing we revert to xi names.
     # If export does not exist skip to next
+
     if (file.exists("export.csv")) {
       names[[i]] <-
         p1xcodes$description[seq(n + 1, min(n + step, nrow(p1xcodes)))]
       export[[i]] <- data.table::fread("export.csv")
       file.remove("export.csv")
     } else {
+      empty <- append(empty, i)
       next
     }
     #cat(".")
@@ -55,6 +58,13 @@ read_ufs <- function(file ,
       names[[i]] <- paste0("x",seq(n+1,(n+(ncol(export[[i]])-3))))
     }
   }
+  # We remove the empty from the list NOT working
+  # export <- export[-empty]
+  # names <- names[-empty]
+  empty <- sapply(export, function(x) ncol(x) == 0)
+  export <- export[!empty]
+  names <- names[!empty]
+
   # We add the 3 first to the names and the ones we already have
   names <- lapply(names, function(x) c("nodeA","nodeB","nodeC",x))
 
@@ -86,7 +96,7 @@ read_ufs <- function(file ,
   if (clean_up) {
     file.remove(list.files(pattern = "*.VDU"))
     file.remove(paste0(dirname(file),"/",stringr::str_sub(basename(file),0,-4),"LPP"))
-    file.remove("export.csv")
+    #file.remove("export.csv")
     file.remove("LAST_P1X0.DAT")
   }
 
