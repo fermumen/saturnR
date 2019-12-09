@@ -69,7 +69,7 @@ write_ufm <- function(x, file,
                       remove_txt = TRUE, clean_up = TRUE, stack = FALSE){
 
   MX <- file.path(get_xexes(),"$MX.exe")
-  if (stringr::str_sub(file,-5,-1) != ".UFM" | stringr::str_sub(file,-5,-1) != ".ufm") {
+  if (!tools::file_ext(file) %in% c("UFM","ufm")) {
     warning("File should have an appropiate extension like .UFM or .ufm")
   }
 
