@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Function reference • saturnR</title>
+<title>P1X Generic Call — p1x • saturnR</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,7 +30,10 @@
 
 
 
-<meta property="og:title" content="Function reference" />
+<meta property="og:title" content="P1X Generic Call — p1x" />
+
+<meta property="og:description" content="P1X Generic Call" />
+<meta name="twitter:card" content="summary" />
 
 
 
@@ -47,7 +50,7 @@
   </head>
 
   <body>
-    <div class="container template-reference-index">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -109,114 +112,60 @@
       </header>
 
 <div class="row">
-  <div class="contents col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Reference</h1>
+    <h1>P1X Generic Call</h1>
+    <small class="dont-index">Source: <a href='https://github.com/R-AECOM/saturnR/blob/master/R/generic_calls_saturn.R'><code>R/generic_calls_saturn.R</code></a></small>
+    <div class="hidden name"><code>p1x.Rd</code></div>
     </div>
 
-    <table class="ref-index">
+    <div class="ref-description">
+    
+    <p>P1X Generic Call</p>
+    
+    </div>
 
-    <colgroup>
-      
-      <col class="alias" />
-      <col class="title" />
-    </colgroup>
-
-    <tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-all-functions" class="hasAnchor"><a href="#section-all-functions" class="anchor"></a>All functions</h2>
-          <p class="section-desc"></p>
-        </th>
-      </tr>
-      <tr>
-        
-        <td>
-          <p><code><a href="dQuote.html">dQuote()</a></code> </p>
-        </td>
-        <td><p>dQuote</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="get_coordinates.html">get_coordinates()</a></code> </p>
-        </td>
-        <td><p>get coordinates</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="get_xexes.html">get_xexes()</a></code> </p>
-        </td>
-        <td><p>Get XEXES</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="p1x.html">p1x()</a></code> </p>
-        </td>
-        <td><p>P1X Generic Call</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="prepare_coordinates.html">prepare_coordinates()</a></code> </p>
-        </td>
-        <td><p>Prepare coordinates file</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="read_ufm.html">read_ufm()</a></code> </p>
-        </td>
-        <td><p>Read UFM function</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="read_ufs.html">read_ufs()</a></code> </p>
-        </td>
-        <td><p>Read UFS function</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="saturn.html">saturn()</a></code> </p>
-        </td>
-        <td><p>saturn function</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="saturnR_example.html">saturnR_example()</a></code> </p>
-        </td>
-        <td><p>Get path to saturnR example</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="set_xexes.html">set_xexes()</a></code> </p>
-        </td>
-        <td><p>Set XEXES</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="skim_dist.html">skim_dist()</a></code> </p>
-        </td>
-        <td><p>Skim Distance UFM function</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="ufs_as_sf.html">ufs_as_sf()</a></code> </p>
-        </td>
-        <td><p>ufs_to_sf</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="write_ufm.html">write_ufm()</a></code> </p>
-        </td>
-        <td><p>Write UFM function</p></td>
-      </tr>
-    </tbody>
+    <pre class="usage"><span class='fu'>p1x</span>(<span class='no'>net1</span>, <span class='no'>net2</span>, <span class='no'>mat1</span>, <span class='no'>mat2</span>, <span class='no'>key</span>)</pre>
+    
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>net1</th>
+      <td><p>ufs of the main network</p></td>
+    </tr>
+    <tr>
+      <th>net2</th>
+      <td><p>ufs of the second network</p></td>
+    </tr>
+    <tr>
+      <th>mat1</th>
+      <td><p>ufm of the first matrix (if not detected automatically)</p></td>
+    </tr>
+    <tr>
+      <th>mat2</th>
+      <td><p>ufm of the first matrix (if not detected automatically)</p></td>
+    </tr>
+    <tr>
+      <th>key</th>
+      <td><p>key file to use</p></td>
+    </tr>
     </table>
-  </div>
+    
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
+    <p>nothing executes call</p>
+    
+
+  </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#section-all-functions">All functions</a></li>
-    </ul>
+      <li><a href="#arguments">Arguments</a></li>
+      
+      <li><a href="#value">Value</a></li>
+          </ul>
+
   </div>
 </div>
 
