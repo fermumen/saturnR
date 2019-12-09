@@ -2,6 +2,7 @@
 
 export(get_coordinates)
 export(get_xexes)
+export(p1x)
 export(prepare_coordinates)
 export(read_ufm)
 export(read_ufs)
