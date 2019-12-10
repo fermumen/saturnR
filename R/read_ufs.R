@@ -37,11 +37,12 @@ read_ufs <- function(file ,
                      paste(batch, collapse = " "),# Added commas for paths with spaces
                      selection_mode)
     system(command) # Execute command
+
     # save in a list and add appropiate names
     # if any of the codes is missing we revert to xi names.
     # If export does not exist skip to next
 
-    if (file.exists("export.csv")) { # File is always created but it's empty :(
+    if (length(readLines("export.csv", n = 1)) > 0) { # File is always created but it's empty :(
       names[[i]] <-
         p1xcodes$description[seq(n + 1, min(n + step, nrow(p1xcodes)))]
       export[[i]] <- data.table::fread("export.csv")
@@ -49,10 +50,13 @@ read_ufs <- function(file ,
     } else {
       names[[i]] <-
         p1xcodes$description[seq(n + 1, min(n + step, nrow(p1xcodes)))]
-      export[[i]] <- NULL
+      export[[i]] <- data.table::data.table() # we add it a a null data.table
       next
     }
     #cat(".")
+    if (length(export[[i]]) == 0) next # skip null datatables warning probably redundant
+    # If step > 1 and we have an unexpected number of columns we rename
+    # using X names
     if ((length(names[[i]])+3) != ncol(export[[i]])){
       missed <- paste(names[[i]], collapse = ", ")
       warning("Missing one of the following: \n", missed,
@@ -60,10 +64,8 @@ read_ufs <- function(file ,
       names[[i]] <- paste0("x",seq(n+1,(n+(ncol(export[[i]])-3))))
     }
   }
-  # We remove the empty from the list NOT working
-  # export <- export[-empty]
-  # names <- names[-empty]
-  empty <- sapply(export, function(x) ncol(x) == 0)
+
+  empty <- sapply(export, function(x) ncol(x) == 0) # detect null
   export <- export[!empty]
   names <- names[!empty]
 

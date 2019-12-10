@@ -14,5 +14,5 @@ test_that("Read and write matrix are consistent", {
   ufm <- read_ufm(saturnR_example("Epsom98mat.UFM"))
   write_ufm(ufm, temp_ufm, stack = TRUE)
   ufm2 <- read_ufm(temp_ufm)
-  expect_equal(sum(ufm$trips),sum(ufm2$trips)) # with some precision.
+  expect_equal(sum(ufm$trips),sum(ufm2$trips))
 })
