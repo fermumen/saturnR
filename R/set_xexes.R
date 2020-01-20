@@ -10,7 +10,7 @@ set_xexes <- function(x){
   if(dir.exists(x)){
     options(XEXES = normalizePath(x))
   } else{
-    warning("Could not find XEXES folder")
+    stop("Could not find XEXES folder")
   }
 
 }

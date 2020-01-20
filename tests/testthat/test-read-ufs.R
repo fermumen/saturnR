@@ -8,4 +8,5 @@ test_that("read_ufs obtaines the correct data from Epsom UFS", {
   expect_equal(nrow(ufs), 48)
   expect_true(abs(mean(ufs$actual_flow) - 567.5415) < 0.01) # with some precision.
   expect_true(abs(mean(ufs$net_speed) - 19.46687) < 0.01)
+  options(XEXES = NULL) # reset so it does not interfere with other tests
 })

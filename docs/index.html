@@ -30,7 +30,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">saturnR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.2</span>
       </span>
     </div>
 
@@ -111,8 +111,8 @@
 <p>The Package comes with some example files for you to test you can see them with</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(saturnR)</a>
 <a class="sourceLine" id="cb2-2" title="2"><span class="kw"><a href="reference/saturnR_example.html">saturnR_example</a></span>()</a>
-<a class="sourceLine" id="cb2-3" title="3"><span class="co">#&gt; [1] "2014_Coordinates.dat"     "BlckCt_2015_5UC_TS11.UFM"</span></a>
-<a class="sourceLine" id="cb2-4" title="4"><span class="co">#&gt; [3] "Epsom98mat.UFM"           "Epsom98oba.UFS"</span></a></code></pre></div>
+<a class="sourceLine" id="cb2-3" title="3"><span class="co">#&gt; [1] "2014_Coordinates.dat"           "Epsom98mat.UFM"                </span></a>
+<a class="sourceLine" id="cb2-4" title="4"><span class="co">#&gt; [3] "Epsom98oba.UFS"                 "One_UserClass_large_matrix.UFM"</span></a></code></pre></div>
 <p>To modify the example Epsom98 matrix first we need to set up out XEXES folder as our back end.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="kw"><a href="reference/set_xexes.html">set_xexes</a></span>(<span class="st">"C:/Program Files (x86)/Atkins/SATURN/XEXES 11.4.07H MC X7/"</span>) <span class="co"># Using a particular version of the backend</span></a></code></pre></div>
 <p>The we can read the matrix. It only has one user class, 12 zones and 144 rows</p>
