@@ -6,7 +6,7 @@
 #' @return Nothing sets up a global option
 #' @export
 #'
-set_xexes <- function(x){
+set_xexes <- function(x) {
   if(dir.exists(x)){
     options(XEXES = normalizePath(x))
   } else{
