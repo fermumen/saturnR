@@ -16,8 +16,8 @@ Imports:
     data.table,
     stringr,
     sf
-URL: https://github.com/R-AECOM/saturnR
-BugReports: https://github.com/R-AECOM/saturnR/issues
+URL: https://github.com/fermumen/saturnR
+BugReports: https://github.com/fermumen/saturnR/issues
 Suggests: 
     testthat,
     knitr,

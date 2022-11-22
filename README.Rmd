@@ -28,7 +28,7 @@ Currently you can:
 ```{r eval=FALSE}
 # You can install the the development version from GitHub:
 # install.packages("devtools")
-devtools::install_github("r-aecom/saturnR")
+devtools::install_github("fermumen/saturnR")
 ```
 
 

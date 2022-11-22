@@ -70,7 +70,7 @@ mat
 #> 144:     12          12          1   0.000
 ```
 
-If we wanted to anlayse the trips between zone 3 and 4 we could use:
+If we wanted to analyse the trips between zone 3 and 4 we could use:
 
 ``` r
 selected_trips <- (mat$origin == 3 & mat$destination == 4) | # from 3 to 4
